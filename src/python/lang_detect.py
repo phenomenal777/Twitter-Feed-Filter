@@ -5,9 +5,8 @@ with open("../../go/trends.txt", "r", encoding='UTF-8') as f:
 
 english_lines = [line.strip() for line in lines if detect(line) == 'en']
 
-with open("required_trends.txt", "w", encoding='UTF-8') as f:
+with open("../../go/required_trends.txt", "w", encoding='UTF-8') as f:
     f.writelines('\n'.join(english_lines))
-
 
 
 
