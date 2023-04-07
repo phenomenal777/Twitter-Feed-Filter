@@ -1,6 +1,6 @@
 from langdetect import detect
 
-with open("trends.txt", "r", encoding='UTF-8') as f:
+with open("../../go/trends.txt", "r", encoding='UTF-8') as f:
     lines = f.readlines()
 
 english_lines = [line.strip() for line in lines if detect(line) == 'en']
