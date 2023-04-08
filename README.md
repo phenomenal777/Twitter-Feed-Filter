@@ -3,7 +3,7 @@
 This is a project done under IEEE NITK where the goal is to identify the irrelevant tweets with respect to a particular hashtag and removing them from the User's feed.
 It helps in keeping the feed clean and improves the User experience while using the application.
 An external twitter scrapper is being used to scraper tweets which scrapes the tweets using Golang. The steps to install the scrapper are as follows:
-## Prerequisites before downloading the Twitter Scraper
+## Requirements before downloading the Twitter Scraper
 Install Go from the website
 
 ### Enable dependency tracking for your code
@@ -19,8 +19,23 @@ Typically, it's of the format
 ```
 Example: github.com/<project-name>
 
-## Installation
+## Installation of the scrapper
 
 ```shell
 go get -u github.com/n0madic/twitter-scraper
 ```
+## Setting up the Project
+The project must be set up in the root directory.
+### For Windows
+```
+  python -m venv venv
+  venv/Scripts/activate
+  pip install -r src/python/requirements.txt
+```
+### For Linux
+```
+  python -m venv venv
+  source env/bin/activate
+  pip install -r src/python/requirements.txt
+``` 
+  
