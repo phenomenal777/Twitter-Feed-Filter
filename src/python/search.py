@@ -21,7 +21,7 @@ for query in queries:
         if counter >= 10:
             break
     
-    with open('{}_urls.txt'.format(query.replace(" ", "_")), 'w', encoding = "UTF-8") as file:
+    with open('files/{}_urls.txt'.format(query.replace(" ", "_")), 'w', encoding = "UTF-8") as file:
         for url in urls:
             file.write(url + '\n')
         file.close()
