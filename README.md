@@ -35,7 +35,7 @@ The project must be set up in the root directory.
 ### For Linux
 ```
   python -m venv venv
-  source env/bin/activate
+  source venv/bin/activate
   pip install -r src/python/requirements.txt
 ``` 
   
