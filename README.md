@@ -1,8 +1,10 @@
 # Envision
 
-This is a project done under IEEE NITK where the goal is to identify the irrelevant tweets with respect to a particular hashtag and removing them from the User's feed.
+## Motivation for the Project
+This is a project done under IEEE NITK where the goal is to identify the irrelevant tweets with respect to a particular trend and removing them from the User's feed.
 It helps in keeping the feed clean and improves the User experience while using the application.
-An external twitter scrapper is being used to scraper tweets which scrapes the tweets using Golang. The steps to install the scrapper are as follows:
+
+An external twitter scraper is being which scrapes the tweets using Golang. The steps to install it are as follows:
 ## Requirements before downloading the Twitter Scraper
 Install Go from the website
 
@@ -19,13 +21,19 @@ Typically, it's of the format
 ```
 Example: github.com/<project-name>
 
-## Installation of the scrapper
+## Installation of the scraper
 
 ```shell
 go get -u github.com/n0madic/twitter-scraper
 ```
 ## Setting up the Project
-The project must be set up in the root directory.
+Clone the repository using the HTTPS key:
+```
+  https://github.com/helios2003/Twitter-Feed-Filter.git
+```
+Or you can fork the repository and git clone it from there.
+
+Navigate to the root directory and do the following:
 ### For Windows
 ```
   python -m venv venv
