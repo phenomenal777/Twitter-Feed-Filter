@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 from googlesearch import search
 
 with open('../../go/files/required_trends.txt', 'r') as f:
@@ -9,7 +8,7 @@ for query in queries:
     urls = []
     counter = 0
    
-    for result in search(query, num_results=10):
+    for result in search(query, num_results=10, lang='en'):
         urls.append(result)
 
     with open('files/{}_urls.txt'.format(query.replace(" ", "_")), 'w', encoding = "UTF-8") as file:

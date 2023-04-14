@@ -19,18 +19,6 @@ jobs:
           cd src/python &&
           pip install -r requirements.txt
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Super-Linter
-        uses: github/super-linter@v4.10.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: GolangCI-Lint
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: "v1.42.1"
-
   golang-build:
     runs-on: ubuntu-latest
     steps:
@@ -44,6 +32,18 @@ jobs:
         run: go build go/scraper.go
       - name: Run Golang tests
         run: go test go/...
+      - name: GolangCI-Lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: "v1.42.1"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Super-Linter
+        uses: github/super-linter@v4.10.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: GolangCI-Lint
         uses: golangci/golangci-lint-action@v2
         with:
