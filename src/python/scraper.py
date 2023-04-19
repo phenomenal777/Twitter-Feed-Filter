@@ -3,6 +3,7 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from collections import Counter
+from prettytable import PrettyTable
 
 # Define the folder path where the text files are located
 folder_path = 'source files/'
@@ -36,7 +37,12 @@ for file_name in os.listdir(folder_path):
             if num_links == 0:
                 break
 
-    # Write the word frequency of each word to a separate file
+    # Create a table to display the word frequency
+    table = PrettyTable()
+    table.field_names = ['Word', 'Frequency']
+    for word, count in word_counter.items():
+        table.add_row([word, count])
+
+    # Write the word frequency table to a separate file
     with open('data/frequency ' + file_name, 'w', encoding='UTF-8') as freq_file:
-        for word, count in word_counter.items():
-            freq_file.write(f'{word:<50}{count:>10}\n')
+        freq_file.write(str(table))
