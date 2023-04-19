@@ -1,15 +1,15 @@
-name: super-linter
 on:
   push:
   pull_request:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -23,13 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
       - name: Setup Golang
         uses: actions/setup-go@v2
         with:
           go-version: "1.x"
       - name: Build Golang code
-        run: go build go/scraper.go
+        run: go build go/tweets_scraper.go
       - name: Run Golang tests
         run: go test go/...
       - name: GolangCI-Lint
@@ -41,10 +41,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Super-Linter
-        uses: github/super-linter@v4.10.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: GolangCI-Lint
-        uses: golangci/golangci-lint-action@v2
+        uses: github/super-linter@v5
         with:
-          version: "v1.42.1"
+          validation: true
+          strict: true
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: ${{ github.head_ref || github.ref }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
