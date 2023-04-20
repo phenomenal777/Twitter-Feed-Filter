@@ -4,12 +4,18 @@ import re
 from bs4 import BeautifulSoup
 from collections import Counter
 from prettytable import PrettyTable
+import nltk
+from nltk.corpus import stopwords
 
 # Define the folder path where the text files are located
 folder_path = 'source files/'
 
 # Define the number of links to scrape from each file
 num_links = 10
+
+# Load the NLTK stopwords
+nltk.download('stopwords')
+stop_words = set(stopwords.words('english'))
 
 # Loop through each text file in the folder
 for file_name in os.listdir(folder_path):
@@ -28,8 +34,11 @@ for file_name in os.listdir(folder_path):
             text = re.sub('\s+', ' ', text)
             output_file.write(text)
 
-            # Count the frequency of each word in the text
+            # Remove stopwords from the text
             words = re.findall('\w+', text)
+            words = [w for w in words if not w.lower() in stop_words]
+
+            # Count the frequency of each word in the text
             word_counter.update(words)
 
             # Decrement num_links variable and break out of the loop if it reaches the limit
