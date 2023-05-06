@@ -1,11 +1,15 @@
+name: Build and lint
+
 on:
   push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  build:
+  build-and-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -18,10 +22,6 @@ jobs:
         run: |
           cd src/python &&
           pip install -r requirements.txt
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
       - name: Super-Linter
         uses: github/super-linter@v5
         with:
