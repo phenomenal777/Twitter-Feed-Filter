@@ -3,55 +3,59 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from collections import Counter
-from prettytable import PrettyTable
 import nltk
 from nltk.corpus import stopwords
+import unicodedata
 
 # Define the folder path where the text files are located
 folder_path = 'source files/'
-
-# Define the number of links to scrape from each file
-num_links = 10
 
 # Load the NLTK stopwords
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
+# Define the regex pattern to match ASCII letters excluding non-ASCII characters
+ascii_pattern = re.compile(r'[\x00-\x7F]+')
+
 # Loop through each text file in the folder
 for file_name in os.listdir(folder_path):
+    # Check if the path is a file and continue only if it is
+    file_path = os.path.join(folder_path, file_name)
+    if not os.path.isfile(file_path):
+        continue
+
     # Read the list of URLs from the current text file
-    with open(folder_path + file_name, 'r') as f:
+    num_links = 10
+    with open(file_path, 'r') as f:
         urls = f.readlines()[:num_links]
 
     # Loop through the URLs and scrape the data
     word_counter = Counter()
-    with open('raw data/outputs ' + file_name, 'a', encoding='UTF-8') as output_file:
+    with open('data/' + file_name, 'a', encoding='UTF-8') as output_file:
         for url in urls:
-            # For limiting redirects
-            page = requests.get(url.strip(), allow_redirects=False)
-            soup = BeautifulSoup(page.content, 'html.parser')
-            text = soup.get_text().strip()
-            text = re.sub('\s+', ' ', text)
-            output_file.write(text)
+            try:
+                # For limiting redirects and setting a timeout of 7 seconds
+                page = requests.get(url.strip(), allow_redirects=False, timeout=7)
+                soup = BeautifulSoup(page.content, 'html.parser')
+                text = soup.get_text().strip()
 
-            # Remove stopwords from the text
-            words = re.findall('\w+', text)
-            words = [w for w in words if not w.lower() in stop_words]
+                # Remove non-ASCII characters from the text
+                text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
 
-            # Count the frequency of each word in the text
-            word_counter.update(words)
+                text = re.sub('\s+', ' ', text)
+                output_file.write(text)
+
+                # Remove stopwords and non-ASCII words from the text
+                words = ascii_pattern.findall(text)
+                words = [w for w in words if not w.lower() in stop_words]
+
+                # Count the frequency of each word in the text
+                word_counter.update(words)
+
+            except requests.exceptions.Timeout:
+                continue
 
             # Decrement num_links variable and break out of the loop if it reaches the limit
             num_links -= 1
             if num_links == 0:
                 break
-
-    # Create a table to display the word frequency
-    table = PrettyTable()
-    table.field_names = ['Word', 'Frequency']
-    for word, count in word_counter.items():
-        table.add_row([word, count])
-
-    # Write the word frequency table to a separate file
-    with open('data/frequency ' + file_name, 'w', encoding='UTF-8') as freq_file:
-        freq_file.write(str(table))

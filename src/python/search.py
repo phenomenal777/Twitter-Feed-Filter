@@ -11,7 +11,7 @@ for query in queries:
     for result in search(query, num_results=10, lang='en'):
         urls.append(result)
 
-    with open('files/{}_urls.txt'.format(query.replace(" ", "_")), 'w', encoding = "UTF-8") as file:
+    with open('source files/{}_urls.txt'.format(query.replace(" ", "_")), 'w', encoding = "UTF-8") as file:
         for url in urls:
             file.write(url + '\n')
         file.close()
