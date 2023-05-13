@@ -1,20 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Welcome to Twitter Feed Filtering System</title>
-  </head>
-  <body>
-    <h1>Welcome to Twitter Feed Filtering System</h1>
-    <form action="/data" method="GET">
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='bird.png') }}">
+  <title>Welcome to Twitter Feed Filtering System</title>
+  <style>
+    h1 {text-align: center;}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      text-align: center;
+    }
+    
+    h1 {
+      color: #1da1f2;
+      margin-top: 0;
+    }
+    
+    button {
+      background-color: #1da1f2;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #0e71b3;
+    }
+    
+    p {
+      font-size: 18px;
+      margin: 20px 0;
+      line-height: 1.5;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Twitter Feed Filtering System</h1>
+  <div class="container">
+    <form action="{{ url_for('get_data') }}" method="GET">
       <button type="submit">See what's trending</button>
     </form>
     {% if data %}
-      <p>
-        {% for hashtag in data %}
-          {{ hashtag }}<br>
-        {% endfor %}
-      </p>
+    <p>
+      {% for hashtag in data %}
+      {{ hashtag }}<br>
+      {% endfor %}
+    </p>
     {% endif %}
-  </body>
+  </div>
+</body>
 </html>
