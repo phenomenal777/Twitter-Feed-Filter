@@ -15,12 +15,16 @@ def favicon():
 @app.route('/data')
 def get_data():
     with open('../go/files/required_trends.txt', 'r') as f:
-        data = f.read().splitlines()
+        data = [line.replace('#', '') for line in f.read().splitlines()]
     return render_template('data.html', data=data)
 
-@app.route('/redirect_page/<item>')
-def redirect_page(item):
-    return f"data needs to be added"
+@app.route('/tweets/<item>')
+def get_tweets(item):
+    filepath = f'../go/files/{item}_tweets.csv'
+    df = pd.read_csv(filepath)
+    headers = df.columns.tolist()
+    rows = df.values.tolist()
+    return render_template('tweets.html', headers=headers, rows=rows)
 
 if __name__ == '__main__':
     app.run(debug=True)

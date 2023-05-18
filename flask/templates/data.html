@@ -4,12 +4,39 @@
   <meta charset="utf-8">
   <link rel="shortcut icon" href="{{ url_for('static', filename='bird.png') }}">
   <title>Data Page</title>
+  <style>
+    h1 {
+      text-align: center;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    button {
+      background-color: #1da1f2;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #0e71b3;
+    }
+  </style>
 </head>
 <body>
   <h1>Data Page</h1>
   <div class="container">
     {% for item in data %}
-      <a href="{{ url_for('redirect_page', item=item) }}"><button>{{ item }}</button></a>
+      <a href="{{ url_for('get_tweets', item=item) }}"><button>{{ item }}</button></a>
     {% endfor %}
   </div>
 </body>
