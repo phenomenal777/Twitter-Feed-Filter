@@ -40,6 +40,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin-bottom: 10px; /* Add margin between buttons */
     }
     
     button:hover {
@@ -63,7 +64,7 @@
     {% if data %}
     <p>
       {% for hashtag in data %}
-      {{ hashtag }}<br>
+      <a href="{{ url_for('hashtag_page', hashtag=hashtag) }}"><button>{{ hashtag }}</button></a>
       {% endfor %}
     </p>
     {% endif %}
