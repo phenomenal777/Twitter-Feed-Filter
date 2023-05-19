@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
-import os 
 import pandas as pd
+import sys
+import os
+sys.path.append("..")
+from src.python.search import perform_search
+from src.python.scraper import scraper
 
 app = Flask(__name__)
 
@@ -25,6 +29,13 @@ def get_tweets(item):
     headers = df.columns.tolist()
     rows = df.values.tolist()
     return render_template('tweets.html', headers=headers, rows=rows)
+
+def exec_search():
+    script_path = os.path.abspath(__file__) # Gives us the absolute path to the file
+    script_dir = os.path.dirname(script_path) # Gives us the directory in this path
+    source_files_dir = os.path.join(script_dir, 'source files') # construct the path to source files directory
+    os.makedirs(source_files_dir, exist_ok=True) # create it if it doesn't exist
+    perform_search()
 
 if __name__ == '__main__':
     app.run(debug=True)
