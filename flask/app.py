@@ -29,7 +29,7 @@ def get_tweets(item):
     headers = df.columns.tolist()
     rows = df.values.tolist()
     return render_template('tweets.html', headers=headers, rows=rows)
-
+@app.route('/test')
 def exec_search():
     script_path = os.path.abspath(__file__) # Gives us the absolute path to the file
     script_dir = os.path.dirname(script_path) # Gives us the directory in this path
