@@ -36,6 +36,8 @@ def exec_search():
     source_files_dir = os.path.join(script_dir, 'source files') # construct the path to source files directory
     os.makedirs(source_files_dir, exist_ok=True) # create it if it doesn't exist
     perform_search()
+    scraper()
+    return "200: OK"
 
 if __name__ == '__main__':
     app.run(debug=True)
