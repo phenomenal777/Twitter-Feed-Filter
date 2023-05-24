@@ -46,4 +46,5 @@ Navigate to the root directory and do the following:
   source venv/bin/activate
   pip install -r src/python/requirements.txt
 ``` 
+Navigate to ``flask`` directory for how to run the web app. 
   
