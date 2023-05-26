@@ -7,7 +7,20 @@ The application is made using flask framework.
 {200: OK}.
 * Then go the ``View relevant tweets`` button and view the tweets relevant to the trend.
 ## Snapshots
-![Home Page](images/home.png)
-![Recent Trends](images/trends.png)
-![Tweets corresponding to the trend](images/tweets.png)
-![Relevant Tweets after applying the ML algorithm](images/results.png)
+
+<img src="images/home.png" alt="Home Page" width="400" height="auto">
+<br>
+*Home Page*
+
+<img src="images/trends.png" alt="Recent Trends" width="400" height="auto">
+<br>
+*Recent Trends*
+
+<img src="images/tweets.png" alt="Tweets corresponding to the trend" width="400" height="auto">
+<br>
+*Tweets corresponding to the trend*
+
+<img src="images/results.png" alt="Relevant Tweets after applying the ML algorithm" width="400" height="auto">
+<br>
+*Relevant Tweets after applying the ML algorithm*
+
