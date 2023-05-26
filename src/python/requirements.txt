@@ -1,5 +1,9 @@
-beautifulsoup4==4.11.1
+beautifulsoup4==4.12.2
 googlesearch_python==1.2.3
 langdetect==1.0.9
 nltk==3.8.1
-Requests==2.30.0
+Requests==2.31.0
+transformers
+gensim
+torch
+pandas

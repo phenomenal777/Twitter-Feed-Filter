@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import sys
-import os
+
 sys.path.append("..")
 from src.python.search import perform_search
 from src.python.scraper import scraper
+from src.python.embeddings import embeddings
 
 app = Flask(__name__)
 
@@ -28,16 +29,22 @@ def get_tweets(item):
     df = pd.read_csv(filepath)
     headers = df.columns.tolist()
     rows = df.values.tolist()
-    return render_template('tweets.html', headers=headers, rows=rows)
+    return render_template('tweets.html', headers=headers, rows=rows, item=item)
+
 @app.route('/test')
 def exec_search():
-    script_path = os.path.abspath(__file__) # Gives us the absolute path to the file
-    script_dir = os.path.dirname(script_path) # Gives us the directory in this path
-    source_files_dir = os.path.join(script_dir, 'source files') # construct the path to source files directory
-    os.makedirs(source_files_dir, exist_ok=True) # create it if it doesn't exist
     perform_search()
     scraper()
+    embeddings()
     return "200: OK"
+
+@app.route('/results/<item>')
+def get_results(item):
+    filepath = f'answers/answer_{item}.csv'
+    df = pd.read_csv(filepath)
+    headers = df.columns.tolist()
+    rows = df.values.tolist()
+    return render_template('results.html', headers=headers, rows=rows, item=item)
 
 if __name__ == '__main__':
     app.run(debug=True)

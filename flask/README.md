@@ -1,4 +1,4 @@
-# Andromeda
+# Twitter-Feed-Filter
 The application is made using flask framework.
 * Install the neccessary packages and dependencies by running ``pip install -r requirements.txt``
 * Run it using the command ``flask run`` or ``python app.py``.

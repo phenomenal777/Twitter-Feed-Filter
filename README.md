@@ -1,4 +1,4 @@
-# Envision
+# Twitter-Feed-Filter
 
 ## Motivation for the Project
 This is a project done under IEEE NITK where the goal is to identify the irrelevant tweets with respect to a particular trend and removing them from the User's feed.

@@ -10,7 +10,7 @@ import time
 
 def scraper():
     # Define the folder path where the text files are located
-    folder_path = os.path.join(os.path.dirname(__file__), 'source files')
+    folder_path = os.path.join('source files')
 
     # Load the NLTK stopwords
     nltk.download('stopwords')
@@ -18,6 +18,11 @@ def scraper():
 
     # Define the regex pattern to match ASCII letters excluding non-ASCII characters
     ascii_pattern = re.compile(r'[\x00-\x7F]+')
+
+    # Define the output directory path
+    output_dir = os.path.join('data')
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     # Loop through each text file in the folder
     for file_name in os.listdir(folder_path):
@@ -33,7 +38,7 @@ def scraper():
 
         # Loop through the URLs and scrape the data
         word_counter = Counter()
-        output_file_path = os.path.join(os.path.dirname(__file__), 'data', f"data_{file_name}")
+        output_file_path = os.path.join(output_dir, f"data_{file_name}")
         with open(output_file_path, 'a', encoding='UTF-8') as output_file:
             for url in urls:
                 try:
@@ -68,4 +73,5 @@ def scraper():
                 if num_links == 0:
                     break
 
-#scraper()
+# Call the scraper function
+# scraper()
