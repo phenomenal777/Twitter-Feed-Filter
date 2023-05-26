@@ -7,7 +7,9 @@
   <title>Tweets</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/tweets.css') }}">
 </head>
-
+<form action="{{ url_for('get_results', item=item) }}" method="get">
+  <button type="submit">View relevant tweets</button>
+</form>
 <body>
   <h1>Tweets</h1>
   <div class="container">
@@ -30,10 +32,6 @@
       </tbody>
     </table>
   </div>
-  
-  <form action="{{ url_for('get_results', item=item) }}" method="get">
-    <button type="submit">View relevant tweets</button>
-  </form>
 </body>
 
 </html>
