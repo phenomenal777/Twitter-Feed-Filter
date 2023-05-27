@@ -1,4 +1,4 @@
-# Envision
+# Twitter-Feed-Filter
 
 ## Motivation for the Project
 This is a project done under IEEE NITK where the goal is to identify the irrelevant tweets with respect to a particular trend and removing them from the User's feed.
@@ -46,4 +46,5 @@ Navigate to the root directory and do the following:
   source venv/bin/activate
   pip install -r src/python/requirements.txt
 ``` 
+Navigate to ``flask`` directory for how to run the web app. 
   

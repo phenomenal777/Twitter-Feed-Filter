@@ -2,3 +2,5 @@ trends.txt
 output.txt
 raw data
 embeddings.txt
+__pycache__
+.hintrc

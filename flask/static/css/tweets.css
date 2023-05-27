@@ -1,0 +1,39 @@
+button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #1da1f2;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0e71b3;
+}
+
+h1 {
+  color: #1da1f2;
+  margin-top: 50px;
+  text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #4da7d1;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
